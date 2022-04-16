@@ -1,0 +1,241 @@
+.container {
+	min-width: 100%;
+}
+
+.header-dashboard {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #551b33;
+	padding: 1rem;
+	height: 70px;
+}
+
+.logo {
+	width: 105px;
+}
+
+.introduction {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+
+.introduction h1 {
+	color: #551b33;
+}
+
+.introduction h2 {
+	color: grey;
+}
+
+.display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	background: lightgray;
+	margin-top: 5rem;
+	text-align: center;
+	border: 1px solid;
+	border-radius: 1rem;
+	min-height: 60px;
+}
+
+.links {
+	margin-top: 2rem;
+	margin-bottom: 3rem;
+	display: flex;
+	justify-content: space-around;
+}
+
+.logout-btn {
+	color: #551b33;
+	background-color: #fff;
+	border-radius: 0.5rem;
+	font-weight: 600;
+	width: 80px;
+	height: 35px;
+}
+
+.profile,
+.proposals,
+.feedback,
+.competitions {
+	background-color: lightgray;
+	box-shadow: 1px 1px 1px 0px;
+	color: #551b33;
+	border-radius: 2rem;
+	width: 15rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 200px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+.project-table {
+	margin-top: 4rem;
+}
+
+.proj-submit {
+	background-color: #551b33;
+	color: #fff;
+	border-radius: 8px;
+	height: 40px;
+	width: 200px;
+	cursor: pointer;
+}
+
+.fa-user,
+.fa-project-diagram,
+.fa-trophy {
+	margin-right: 1rem;
+	font-size: 2rem;
+}
+
+.btn:hover {
+	background-color: #f0ab33;
+	color: #551b33;
+}
+
+.fa-arrow-left,
+.fa-plus {
+	font-size: 1.125rem;
+	cursor: pointer;
+}
+
+.fa-arrow-left:hover,
+.fa-plus:hover {
+	color: #f0ab33;
+}
+
+.new-project {
+	margin-top: 2rem;
+}
+
+.projects-sidebar {
+	width: 30%;
+	height: 100vh;
+	margin-top: 3rem;
+	background-color: #e8e8e8;
+	color: #551b33;
+	border-radius: 1rem;
+	padding: 2rem;
+}
+
+.projects-main {
+	width: 70%;
+	margin-top: 3rem;
+	margin-left: 1rem;
+	background-color: #e8e8e8;
+	color: #551b33;
+	border-radius: 1rem;
+	padding: 2rem;
+}
+
+.project-container {
+	display: flex;
+}
+
+.on-padding {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.home-btn {
+	width: 75px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #551b33;
+	color:#fff;
+}
+
+.show-proposal-container {
+	max-width: 800px;
+	margin: 1rem auto;
+}
+
+.proposal-info {
+	padding: 1rem;
+	border: 1px solid;
+	border-radius: 5px;
+	margin-bottom: 2rem;
+}
+
+.modal-body input {
+	margin-bottom: 1rem;
+}
+
+/* Media queries */
+
+@media (max-width: 576px) {
+	.header-container {
+		flex-direction: column;
+	}
+
+	.nav-links {
+		margin-top: 2rem;
+	}
+
+	.links {
+		display: block;
+		text-align: center;
+	}
+
+	.message-btn,
+	.projects-btn {
+		margin-bottom: 1rem;
+	}
+
+	.container {
+		padding: 1rem 1rem 2rem 1rem;
+	}
+
+	.introduction h1 {
+		font-size: 2.125rem;
+	}
+
+	.project-container {
+		display: block;
+	}
+
+	.projects-sidebar {
+		width: 100%;
+		height: auto;
+	}
+
+	.projects-main {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.projects-main h1 {
+		font-size: 1.5875rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.links {
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		justify-content: center;
+	}
+	.projects {
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
+}

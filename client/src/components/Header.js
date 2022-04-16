@@ -315,7 +315,7 @@ function Header(props) {
 		return (
 			<Box sx={{ marginLeft: "1rem", marginRight: "1rem", flexGrow: 1 }}>
 				<Typography sx={{ textAlign: "center", fontSize: "1rem" }}>
-					{"Advancing Engaged Citizenship"}
+					{"Financial assessment of startups"}
 				</Typography>
 			</Box>
 		);

@@ -2,14 +2,13 @@ import * as React from "react";
 import { Box, Typography, Link } from "@mui/material";
 import styled from "styled-components";
 import theme from "../../themes/theme";
-import FooterPic from "./footer_icon.png";
 
 function Copyright() {
   return (
 		<Typography variant="body2">
 			{"Copyright © "}
-			<Link color="inherit" href="https://github.com/DouglasVDM/aec">
-				The A Team
+			<Link color="inherit" href="https://github.com/spaceneurons/kill-yourself/">
+				Margarita Rusheva
 			</Link>
 			{` ${new Date().getFullYear()}.`}
 		</Typography>
@@ -19,16 +18,7 @@ function Copyright() {
 const Footer = () => {
   return (
     <Container>
-      <FlexItem>
-        <ImageContainer>
-          <Image
-            src={FooterPic}
-            alt='Footer'
-            height='100%'
-            width='auto'
-          />
-        </ImageContainer>
-      </FlexItem>
+
       <FlexItem>
         <Box
           sx={{
@@ -37,9 +27,9 @@ const Footer = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant='h5'>Advancing Engaged Citizenship</Typography>
+          <Typography variant='h5'>Financial assessment of startups</Typography>
           <Typography variant='body2'>
-            204521, Zoom St, Cape Town, South Africa
+            220045, Belarus, Minsk
           </Typography>
           <Copyright />
         </Box>

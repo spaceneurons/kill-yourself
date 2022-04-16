@@ -16,7 +16,7 @@ function LogInButton(props) {
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
 		if (props.isAuthenticated) {
-			props.enqueueSnackbar("You have been logged out!", { variant: "error" });
+			props.enqueueSnackbar("Вы вышли из системы!", { variant: "error" });
 			localStorage.removeItem("token");
 			props.setAuth(false);
 			props.changeHeaders(HEADERS_DATA.home);
@@ -116,7 +116,7 @@ function LogInButton(props) {
 							marginRight: "0.3rem",
 						}}
 					/>
-					<Typography>Admin</Typography>
+					<Typography>Админ</Typography>
 				</MenuItem>
 			</Menu>
 		</Box>

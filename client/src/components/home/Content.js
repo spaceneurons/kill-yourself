@@ -40,7 +40,7 @@ const Content = () => {
 									textAlign: "center",
 								}}
 							>
-								Advancing Engaged Citizenship
+								Программная поддержка оценки и мониторинга финансовых показателей стартапа
 							</Typography>
 						</Grid>
 						<Grid item xs={12} md={8}>
@@ -50,12 +50,10 @@ const Content = () => {
 								}}
 							>
 								<WrappingText>
-									A platform where students can journey with a team of mentors
-									to assist with the innovation of project ideas, during the
-									conceptualization and implementation phase. It allows students
-									to complete a standard template with prompts to answer key
-									questions. It also allows university staff to provide feedback
-									and mentorship via the platform.
+								Платформа, где клиенты смогут вносить финансовые показатели
+								своего стартапа, а финансовые аналитики, в совю очередь,
+								давать оценку данному проекту. Клиент сможет получить фидбек от
+								финансового аналитика, а так же..........
 									<WrappedImage
 										onClick={() => history.push("/student/sign-up")}
 									>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--    <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: head"/>
+    <link th:href="@{/static/css/home.css}" rel="stylesheet"/>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div th:replace="/common/fragments-page :: header"/>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center text-uppercase mb-5 color-blue" th:text="#{about.opportunities}"></h1>
+        </div>
+
+    </div>
+</div>
+<div th:replace="/common/fragments-page :: footer"/>
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+</body>
+</html>

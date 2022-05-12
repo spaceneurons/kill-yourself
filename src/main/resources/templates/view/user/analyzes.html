@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--        <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: head"/>
+    <th:block th:include="/common/fragments-util :: jQuery-lib"/>
+
+    <link th:href="@{/static/css/head-pages-descriptions.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/analyzes.css}" rel="stylesheet"/>
+    <title th:text="#{navbar.brand}"></title>
+    <input id="username" type="hidden" th:value="${username}" disabled>
+</head>
+<body>
+<div th:replace="/common/fragments-page :: header"/>
+
+<div class="head-block text-center">
+    <div class="head element">
+        <h2 th:text="#{page.title.analyzes.title}">Lorem ipsum dolor.</h2>
+    </div>
+    <div class="center element" th:text="#{page.title.analyzes.definition}"></div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <div class="row row_element">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-10 col-12">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#biochemical_blood_modal">
+                    <div class="analise_card biochemical_blood">
+
+                        <div class="text" th:text="#{page.title.analyzes.blood.bio}"></div>
+                    </div>
+                </button>
+
+            </div>
+            <div class="col-xl-2 col-1"></div>
+        </div>
+        <div class="row row_element">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-10 col-12">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#general_blood_modal">
+                    <div class="analise_card general_blood">
+
+<!--                             src="https://external-preview.redd.it/VWrM2IrTB26KZm3b_bQL0ZLeZWfhWfgx1Mj5iOSgPe0.png?auto=webp&s=16aedaad09afab1a43abf2d3314517a4917f14a5"/>-->
+                        <div class="text" th:text="#{page.title.analyzes.blood.general}"></div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-xl-2 col-1"></div>
+        </div>
+    </div>
+</div>
+
+<!-- biochemical blood -->
+<div class="modal fade" id="biochemical_blood_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" th:text="#{analyzes.blood.biochemical.title.add}"></h5>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="add_biochemical_blood_form" th:object="${bio_blood}">
+
+                    <div class="form-group">
+                        <small id="helpProtein" class="form-text text-muted">
+                            <span th:text="#{analyzes.blood.biochemical.protein}"/>
+                        </small>
+                        <input type="number" class="form-control" th:field="*{protein}" aria-describedby="helpProtein"
+                               step="0.001">
+                        <p class="text_error_underline protein_error error" th:text="#{reg.error}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <small id="helpGlucose" class="form-text text-muted">
+                            <span th:text="#{analyzes.blood.biochemical.glucose}"/>
+                        </small>
+                        <input type="number" class="form-control" th:field="*{glucose}" aria-describedby="helpGlucose"
+                               step="0.001">
+                        <p class="text_error_underline glucose_error error" th:text="#{reg.error}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <small id="helpCholesterol" class="form-text text-muted">
+                            <span th:text="#{analyzes.blood.biochemical.cholesterol}"/>
+                        </small>
+                        <input type="number" class="form-control" th:field="*{cholesterol}"
+                               aria-describedby="helpCholesterol" step="0.001">
+                        <p class="text_error_underline cholesterol_error error" th:text="#{reg.error}"></p>
+                    </div>
+
+                    <div class="button_container_reset">
+                        <button class=" mt-2" type="reset"><img class="btn_img" th:src="@{/static/images/refresh.png}"></button>
+                    </div>
+                </form>
+                <div class="success alert alert-primary text-center" th:text="#{label.changes.added}"></div>
+                <div class="fail alert alert-warning text-center" th:text="#{label.changes.fail}"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="bio_btn_close" class="btn btn-secondary" data-dismiss="modal"
+                        th:text="#{label.changes.cancel}"></button>
+                <button id="bio_btn_add" class="btn btn-primary" th:text="#{label.changes.add}"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- biochemical blood -->
+<div class="modal fade" id="general_blood_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" th:text="#{analyzes.blood.general.title.add}"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="add_general_blood_form" th:object="${general_blood}">
+
+                    <div class="form-group">
+                        <small id="helpErythrocytes" class="form-text text-muted">
+                            <span th:text="#{analyzes.blood.general.erythrocytes}"/>
+                        </small>
+                        <input type="number" class="form-control" th:field="*{erythrocytes}" aria-describedby="helpErythrocytes"
+                               step="0.001">
+                        <p class="text_error_underline erythrocytes_error error" th:text="#{reg.error}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <small id="helpLeukocytes" class="form-text text-muted">
+                            <span th:text="#{analyzes.blood.general.leukocytes}"/>
+                        </small>
+                        <input type="number" class="form-control" th:field="*{leukocytes}" aria-describedby="helpLeukocytes"
+                               step="0.001">
+                        <p class="text_error_underline leukocytes_error error" th:text="#{reg.error}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <small id="helpHemoglobinValue" class="form-text text-muted">
+                            <span th:text="#{analyzes.blood.general.hemoglobinValue}"/>
+                        </small>
+                        <input type="number" class="form-control" th:field="*{hemoglobinValue}"
+                               aria-describedby="helpHemoglobinValue" step="0.001">
+                        <p class="text_error_underline hemoglobinValue_error error" th:text="#{reg.error}"></p>
+                    </div>
+
+                    <div class="button_container_reset">
+                        <button class=" mt-2" type="reset"><img class="btn_img" th:src="@{/static/images/refresh.png}"></button>
+                    </div>
+                </form>
+                <div class="success alert alert-primary text-center" th:text="#{label.changes.added}"></div>
+                <div class="fail alert alert-warning text-center" th:text="#{label.changes.fail}"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="general_btn_close" class="btn btn-secondary" data-dismiss="modal"
+                        th:text="#{label.changes.cancel}"></button>
+                <button id="general_btn_add" class="btn btn-primary" th:text="#{label.changes.add}"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/common/fragments-page :: footer"/>
+
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+<script th:src="@{/static/js/analyzes.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/general-form-ajax.js}"></script>
+</body>
+</html>

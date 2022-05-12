@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html"
+      xmlns:c="http://www.thymeleaf.org">
+<head>
+    <!--    <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: head"/>
+    <link th:href="@{/static/css/personal.css}" rel="stylesheet"/>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div th:replace="/common/fragments-page :: header"/>
+<div class="container">
+    <div class="main-body mt-3 mb-3">
+        <div class="row gutters-sm">
+            <div th:replace="/common/fragments-page :: personal-card"/>
+
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0" th:text="#{login.username}">Nickname</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${user.username}">Kenneth Valdez</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0" th:text="#{profile.fullName}">Full Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <span th:text="${user.card?.surname} ?: '' + ' '"/>
+                                <span th:text="${user.card?.name} ?: '' + ' '"/>
+                                <span th:text="${user.card?.thirdName} ?: '' + ' '"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3"><h6 class="mb-0" th:text="#{reg.email}">Email</h6></div>
+                            <div class="col-sm-9 text-secondary" th:text="${user.email}">fip@jukmuh.al</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0" th:text="#{profile.mobile}">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${user.card?.mobile}"></div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0" th:text="#{profile.birthday}">Address</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary"
+                                 th:text="${#dates.format(user.card?.birthday, 'dd-MM-yyyy')}"></div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0" th:text="#{profile.gender}">Gender</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <span th:if="${user.card?.gender?.name() eq 'MALE'}" th:text="#{profile.gender.male}"/>
+                                <span th:if="${user.card?.gender?.name() eq 'FEMALE'}" th:text="#{profile.gender.female}"/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a class="btn btn-info " th:href="@{personal/edit/{username}(username = ${user.username})}"
+                                   th:text="#{label.changes.edit}">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div th:replace="/common/fragments-page :: footer"/>
+</body>
+</html>

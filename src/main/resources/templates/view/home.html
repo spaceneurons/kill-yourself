@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--    <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <meta charset="utf-8" />
+    <th:block th:include="/common/fragments-util :: head"/>
+    <link th:href="@{/static/css/home.css}" rel="stylesheet"/>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div th:replace="/common/fragments-page :: header"/>
+<div class="main head-block">
+    <div class="container">
+        <div class="row">
+            <div sec:authorize="isAnonymous()">
+                <h1 th:inline="text" th:text="#{main.welcome}"></h1>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <h1 th:inline="text">
+                    <span th:text="#{main.welcome.back}"/>
+                    [[${#httpServletRequest.remoteUser}]]!
+                </h1>
+            </div>
+
+            <div class="col head-name">
+                <h1 class="head-name-top">
+                    <span th:text="#{main.info.first}"/></br>
+                    <span th:text="#{main.info.second}"/>
+                </h1>
+                <div class="head-name-bottom" th:text="#{main.info.third}"></div>
+                <div class="head-title text-uppercase mb-4" th:text="#{navbar.brand}"></div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+</body>
+</html>

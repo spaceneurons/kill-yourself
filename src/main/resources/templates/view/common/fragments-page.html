@@ -1,0 +1,128 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header id="header" th:fragment="header" class="navbar navbar-expand-lg">
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <!--            <span sec:authentication="name"></span>-->
+            <div sec:authorize="!isAuthenticated()">
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/auth/logIn}" th:text="#{navbar.enter}"/>
+                </li>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <a class="btn-itd btn-reg" th:href="@{/auth/registration}" th:text="#{main.registration}"></a>
+            </div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:remove="tag">
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/admin/management}" th:text="#{navbar.admin.management}"/>
+                </li>
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/admin/reports}" th:text="#{navbar.admin.reports}"/>
+                </li>
+<!--                <li class="nav-item-itd btn-login">-->
+<!--                    <a class="btn-itd" th:href="@{/admin/messages}" th:text="#{navbar.admin.messages}"/>-->
+<!--                </li>-->
+            </div>
+            <div sec:authorize="hasAuthority('USER')" th:remove="tag">
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/user/personal}" th:text="#{navbar.user.personal}">Личный кабинет</a>
+                </li>
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/user/analyzes}" th:text="#{navbar.user.analyzes}">Анализы</a>
+                </li>
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/user/conclusions}" th:text="#{navbar.user.conclusions}">Заключения</a>
+                </li>
+<!--                <li class="nav-item-itd btn-login">-->
+<!--                    <a class="btn-itd" th:href="@{/user/statistics}" th:text="#{navbar.user.statistics}">Статистика</a>-->
+<!--                </li>-->
+            </div>
+            <div sec:authorize="hasAuthority('DOCTOR')" th:remove="tag">
+                <li class="nav-item-itd btn-login">
+                    <a class="btn-itd" th:href="@{/doctor/patients}" th:text="#{navbar.doctor.patients}">Пациенты</a>
+                </li>
+<!--                <li class="nav-item-itd btn-login">-->
+<!--                    <a class="btn-itd" th:href="@{/doctor/analytics}" th:text="#{navbar.doctor.analytics}">Аналитика</a>-->
+<!--                </li>-->
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <li class="nav-item-itd btn-login">
+                    <form th:action="@{/auth/logout}" method="post">
+                        <button class="btn-itd custom_text" th:href="@{/auth/logout}" th:text="#{navbar.exit}"></button>
+                    </form>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <th:block th:include=" :: lang-dropdown"/>
+</header>
+
+<footer id="footer" th:fragment="footer">
+<!--    <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 ">-->
+<!--        <div class="col-12">-->
+<!--            <div class="row row-2">-->
+<!--                <div class="col-sm-3 text-md-center">-->
+<!--                    <h5><span> <i class="fa fa-firefox text-light" aria-hidden="true"></i></span><b> Stride</b></h5>-->
+<!--                </div>-->
+<!--                <div class="col-sm-3 my-sm-0 mt-5">-->
+<!--                    <ul class="list-unstyled">-->
+<!--                        <li class="mt-0">Platform</li>-->
+<!--                        <li>Help Center</li>-->
+<!--                        <li>Security</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="col-sm-3 my-sm-0 mt-5">-->
+<!--                    <ul class="list-unstyled">-->
+<!--                        <li class="mt-0">Customers</li>-->
+<!--                        <li>Use Cases</li>-->
+<!--                        <li>Customers Services</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="col-sm-3 my-sm-0 mt-5">-->
+<!--                    <ul class="list-unstyled">-->
+<!--                        <li class="mt-0">Company</li>-->
+<!--                        <li>About</li>-->
+<!--                        <li>Careers- <span class="Careers">We're-hiring</span></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="row justify-content-center mt-0 pt-0 row-1 mb-0 px-sm-3 px-2">
+        <div class="col-12">
+            <div class="row my-4 row-1 no-gutters">
+                <div class="col-sm-3 col-auto text-center">&#9400;<small th:text="#{footer.company}"/></div>
+                <div class="col-md-3 col-auto "></div>
+                <div class="col-md-3 col-auto"></div>
+                <div class="col my-auto text-md-left text-right "><small th:text="#{footer.email}"/>
+                    <span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span>
+                    <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<th:block th:fragment="lang-dropdown">
+    <div class="header_right me-5 ms-2 align-items-center languages_dropdown">
+        <ul >
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="">
+                    <img th:src="@{/static/images/lang.png}" alt="lang" style="width: 50px;"/>
+                </a>
+                <div class="dropdown-content">
+                    <a class="button_locale" th:href="@{?lang=ru}" th:text="#{label.lang.ru}"/>
+                    <a class="button_locale" th:href="@{?lang=en}" th:text="#{label.lang.en}"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+</th:block>
+
+<th:block th:fragment="personal-card">
+    <div class="col-md-4 mb-3">
+
+    </div>
+</th:block>

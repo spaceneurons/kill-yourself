@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--    <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: meta-tags"/>
+    <th:block th:include="/common/fragments-util :: bs-link-css"/>
+    <link rel="stylesheet" th:href="@{/static/css/login-registration.css}">
+    <title th:text="#{reg.registration}"></title>
+</head>
+<body>
+<div class="container-wrapper">
+    <div class="container">
+        <form id="form" th:action="@{/auth/registration}" th:object="${user}" method="post">
+            <div class="title" th:text="#{reg.registration}"></div>
+            <div class="input-box underline">
+                <input type="text" th:placeholder="#{login.username}" th:field="*{username}"
+                       name="username" autocomplete="off" autofocus >
+                <div class="underline"></div>
+                <p class="text_error_underline" th:each="error: ${#fields.errors('username')}" th:text="#{}">Validation
+                    error</p>
+                <div class="text_error_underline" th:if="${param.alreadyExists}"
+                     th:text="#{reg.account.username.exists}"></div>
+                <p id="username_error_text" class="text_error_underline"/>
+            </div>
+            <div class="input-box">
+                <input type="email" th:placeholder="#{reg.email}" th:field="*{email}" name="email"
+                       autocomplete="off" minlength="3" maxlength="28" >
+                <div class="underline"></div>
+                <p class="text_error_underline" th:each="error: ${#fields.errors('email')}" th:text="${error}"></p>
+                <p id="email_error_text" class="text_error_underline"/>
+            </div>
+            <div class="input-box">
+                <input type="password" th:placeholder="#{login.password}" th:field="*{password}" name="password"
+                       autocomplete="off" minlength="3" maxlength="28" >
+                <div class="underline"></div>
+                <p id="password_error_text" class="text_error_underline"/>
+            </div>
+            <div class="input-box">
+                <input type="password" th:placeholder="#{reg.password.repeat}" th:field="*{matchingPassword}"
+                       autocomplete="off" minlength="3" maxlength="28" >
+                <div class="underline"></div>
+                <p class="text_error_underline" th:each="error: ${#fields.errors('matchingPassword')}"/>
+                <p id="repeat_pass_error_text" class="text_error_underline" th:text="#{dto.user.password.mismatch}"/>
+            </div>
+            <div class="form-check form-check-inline mt-2">
+                <label class="form-check-label mt-3">
+                    <input class="form-check-input" type="checkbox" th:field="*{confirmation}" name="confirmation"
+                           id="reg_confirmation" th:text="#{reg.accept.agreement}" value="checkedValue">
+                </label>
+                <p class="text_error_underline" th:each="error: ${#fields.errors('confirmation')}"
+                   th:text="${error}"></p>
+            </div>
+            <p id="confirmation_error_text" class="text_error_underline"/>
+            <div th:if="${param.serviceEx}" th:text="#{reg.error}"></div>
+
+            <div id="captcha" class="g-recaptcha col-sm-5 mt-2"
+                 th:attr="data-sitekey=${@environment.getProperty('google.recaptcha.key.site')}"></div>
+            <span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
+            <div class="input-box button mt-4">
+                <input type="submit" id="reg_button" th:value="#{reg.signUp}">
+                <div id="sending" class="text-center alert-info disable"
+                     th:text="#{mail.sending}"></div>
+                <div id="successRegistrationLabel" class="text-center alert-info disable"
+                     th:text="#{mail.success}"></div>
+            </div>
+        </form>
+        <div class="title forgot">
+            <a class="underlineHover" th:href="@{/auth/logIn}" th:text="#{reg.auth}"></a>
+        </div>
+        <div class="title forgot">
+            <a class="underlineHover" th:href="@{/}" th:text="#{label.to.main}"></a>
+        </div>
+    </div>
+</div>
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+<th:block th:include="/common/fragments-util :: jQuery-lib"/>
+<script th:src='@{/static/js/registration.js}'></script>
+<script th:src='@{/static/js/general-form-ajax.js}'></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</body>
+</html>

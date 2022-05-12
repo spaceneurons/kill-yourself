@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--    <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: meta-tags"/>
+    <th:block th:include="/common/fragments-util :: bs-link-css"/>
+    <link rel="stylesheet" th:href="@{/static/css/login-registration.css}">
+    <title th:text="#{login.signIn}"></title>
+</head>
+<body>
+<div class="container-wrapper">
+    <div class="container">
+        <form th:action="@{/auth/authentication}" method="post">
+            <div class="title" th:text="#{login.auth}"></div>
+            <div class="input-box underline">
+                <input type="text" th:placeholder="#{login.username}" name="username" autocomplete="off" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-box">
+                <input type="password" th:placeholder="#{login.password}" name="password" autocomplete="off" required>
+                <div class="underline"></div>
+            </div>
+            <div th:if="${param.error}" class="alert alert-danger mt-4" th:text="#{login.incorrect.login-password}"></div>
+            <div th:if="${param.logout}" class="alert alert-info mt-4" th:text="#{login.logout}"></div>
+            <div th:if="${param.blocked}" class="alert alert-warning mt-4" th:text="#{login.blocked}"></div>
+            <div th:if="${param.changed}" class="alert alert-success mt-2 mb-2 text-center" th:text="#{password.change.success}"></div>
+            <div th:if="${param.unchanged}" class="alert alert-danger mt-2 mb-2 text-center" th:text="#{password.change.fail}"></div>
+            <div th:if="${activated}" class="alert alert-info mt-2 mb-2 text-center" th:text="#{user.activation.success}"></div>
+            <div th:if="${recovery}" class="alert alert-warning mt-2 mb-2 text-center" th:text="#{user.activation.fail}"></div>
+            <div class="input-box button">
+                <input type="submit" th:value="#{login.signIn}"/>
+            </div>
+        </form>
+        <div class="title forgot">
+            <a class="underlineHover" th:href="@{/auth/registration}" th:text="#{login.registration}"></a>
+        </div>
+        <div class="title forgot">
+            <a class="underlineHover" th:href="@{/auth/reset/password}" th:text="#{login.password.forgot}"
+               data-bs-toggle="modal" data-bs-target="#passRecoveryModal"></a>
+        </div>
+        <div class="title forgot">
+            <a class="underlineHover" th:href="@{/}" th:text="#{label.to.main}"></a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade " id="passRecoveryModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="text-end">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form>
+                    <div id='formRecovery' class="form-group">
+                    <label for="email" class="mb-2" th:text="#{recover.password.for}"></label>
+                    <input type="email" class="form-control text-center" name="email" id="email" aria-describedby="emailHelpId"
+                           placeholder="some@some.by" required>
+                    <small id="emailHelpId" class="form-text disable red" th:text="#{dto.card.email.pattern}"></small>
+                    <small id="emailHelpFail" class="form-text disable red" th:text="#{recover.email.not-found}"></small>
+                    </div>
+                    <div id="sending" class="text-center alert-info disable mt-2" th:text="#{mail.sending}"></div>
+                    <div id="successSendEmailForRecoveryLabel" class="text-center alert-info disable mt-2" th:text="#{mail.success}"></div>
+                    <button id="recoverPassword" type="submit" class="btn btn-primary mt-3" th:text="#{recover.password}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+<th:block th:include="/common/fragments-util :: jQuery-lib"/>
+<script th:src="@{/static/js/login.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+</body>
+</html>

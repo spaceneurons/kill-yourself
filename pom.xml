@@ -240,7 +240,7 @@
     </dependencies>
 
     <build>
-        <finalName>medical_center</finalName>
+        <finalName>Online learning app</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>

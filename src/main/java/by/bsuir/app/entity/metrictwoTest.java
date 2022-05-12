@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class GeneralBloodTest extends Analyzes<GeneralBloodTest> {
+public class metrictwoTest extends Analyzes<metrictwoTest> {
 
     private static final long serialVersionUID = 1L;
 

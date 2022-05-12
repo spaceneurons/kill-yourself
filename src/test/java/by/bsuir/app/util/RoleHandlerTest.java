@@ -18,7 +18,7 @@ public class RoleHandlerTest {
 
         ArrayList<String> expected = new ArrayList<String>() {
             {
-                add("аналитик");
+                add("Аналитик");
                 add("Администратор");
             }
         };
@@ -33,7 +33,7 @@ public class RoleHandlerTest {
 
         ArrayList<String> expected = new ArrayList<String>() {
             {
-                add("аналитик");
+                add("Аналитик");
                 add("Администратор");
             }
         };

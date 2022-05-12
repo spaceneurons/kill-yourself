@@ -1,9 +1,9 @@
-package by.bsuir.app.controller.doctor;
+package by.bsuir.app.controller.analitic;
 
-import by.bsuir.app.entity.BiochemicalBloodTest;
-import by.bsuir.app.entity.GeneralBloodTest;
-import by.bsuir.app.service.BiochemicalBloodTestService;
-import by.bsuir.app.service.GeneralBloodTestService;
+import by.bsuir.app.entity.metriconeTest;
+import by.bsuir.app.entity.metrictwoTest;
+import by.bsuir.app.service.metriconeTestService;
+import by.bsuir.app.service.metrictwoTestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,21 +14,21 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/doctor/patients")
-public class PatientsController {
+@RequestMapping("/analitic/clients")
+public class clientsController {
 
-    private final BiochemicalBloodTestService biochemicalBloodTestService;
-    private final GeneralBloodTestService generalBloodTestService;
+    private final metriconeTestService metriconeTestService;
+    private final metrictwoTestService generalBloodTestService;
 
-    public PatientsController(BiochemicalBloodTestService biochemicalBloodTestService,
-                              GeneralBloodTestService generalBloodTestService) {
-        this.biochemicalBloodTestService = biochemicalBloodTestService;
+    public clientsController(metriconeTestService metriconeTestService,
+                              metrictwoTestService generalBloodTestService) {
+        this.metriconeTestService = metriconeTestService;
         this.generalBloodTestService = generalBloodTestService;
     }
 
     @GetMapping("")
-    public String showPatientsPage(Model model) {
-        return "doctor/patients-analyzes";
+    public String showclientsPage(Model model) {
+        return "analitic/clients-analyzes";
     }
 
     @ResponseBody
@@ -46,13 +46,13 @@ public class PatientsController {
 
     @ResponseBody
     @GetMapping("/bioBlood")
-    public  List<BiochemicalBloodTest> wrappedFindAllBiochemicalBlood() {
-        return biochemicalBloodTestService.findAll();
+    public  List<metriconeTest> wrappedFindAllmetricone() {
+        return metriconeTestService.findAll();
     }
 
     @ResponseBody
     @GetMapping("/generalBlood")
-    public List<GeneralBloodTest> findAllGeneralBlood() {
+    public List<metrictwoTest> findAllGeneralBlood() {
         return generalBloodTestService.findAll();
     }
 
@@ -60,7 +60,7 @@ public class PatientsController {
     @PatchMapping("/bioBlood/{id}")
     public ResponseEntity<?> addBioBloodTestResult(@PathVariable("id") Long bloodTestId,
                                                    @RequestBody Map<String, String> params) {
-        biochemicalBloodTestService.addRecommendation(
+        metriconeTestService.addRecommendation(
                 Long.parseLong(params.get("userId")),
                 bloodTestId,
                 params.get("recom").replace("\"", ""));

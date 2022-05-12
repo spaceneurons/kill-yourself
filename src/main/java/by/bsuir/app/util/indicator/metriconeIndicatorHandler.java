@@ -1,34 +1,34 @@
 package by.bsuir.app.util.indicator;
 
 import by.bsuir.app.entity.Analyzes;
-import by.bsuir.app.entity.BiochemicalBloodTest;
+import by.bsuir.app.entity.metriconeTest;
 import by.bsuir.app.entity.enums.State;
 
 import java.util.List;
 
-public class BiochemicalBloodIndicatorHandler implements IndicatorHandler<BiochemicalBloodTest>{
+public class metriconeIndicatorHandler implements IndicatorHandler<metriconeTest>{
 
-    private final static double PROTEIN_MIN = 100;
-    private final static double PROTEIN_MAX = 100000;
-    private final static double GLUCOSE_MIN = 1;
-    private final static double GLUCOSE_MAX = 5000;
-    private final static double CHOLESTEROL_MIN = 10;
-    private final static double CHOLESTEROL_MAX = 10000;
+    private final static double PROTEIN_MIN = 60;
+    private final static double PROTEIN_MAX = 85;
+    private final static double GLUCOSE_MIN = 3.8;
+    private final static double GLUCOSE_MAX = 6.3;
+    private final static double CHOLESTEROL_MIN = 3.5;
+    private final static double CHOLESTEROL_MAX = 5.5;
 
     private final static double CUSTOMER_ACQUISITION_COST_MIN = 3.5;
     private final static double CUSTOMER_ACQUISITION_COST_MAX = 5.5;
 
     private final String lang;
 
-    public BiochemicalBloodIndicatorHandler(String lang) {
+    public metriconeIndicatorHandler(String lang) {
         this.lang = lang;
     }
 
     @Override
-    public List<BiochemicalBloodTest> processIndicators(List<? extends Analyzes> analyzes) {
-        List<BiochemicalBloodTest> tests = (List<BiochemicalBloodTest>) analyzes;
+    public List<metriconeTest> processIndicators(List<? extends Analyzes> analyzes) {
+        List<metriconeTest> tests = (List<metriconeTest>) analyzes;
 
-        for (BiochemicalBloodTest test : tests) {
+        for (metriconeTest test : tests) {
             test.setProteinState(langResolver(getProteinState(test.getProtein())));
             test.setGlucoseState(langResolver(getGlucoseState(test.getGlucose())));
             test.setCholesterolState(langResolver(getCholesterolState(test.getCholesterol())));

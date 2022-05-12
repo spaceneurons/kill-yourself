@@ -1,9 +1,9 @@
 package by.bsuir.app.service.impl;
 
-import by.bsuir.app.dao.BiochemicalBloodTestDao;
+import by.bsuir.app.dao.metriconeTestDao;
 import by.bsuir.app.dao.UserDao;
-import by.bsuir.app.dto.BiochemicalBloodTestDto;
-import by.bsuir.app.entity.BiochemicalBloodTest;
+import by.bsuir.app.dto.metriconeTestDto;
+import by.bsuir.app.entity.metriconeTest;
 import by.bsuir.app.entity.GeneralBloodTest;
 import by.bsuir.app.entity.User;
 import by.bsuir.app.exception.DaoException;
@@ -12,8 +12,8 @@ import by.bsuir.app.pagination.Page;
 import by.bsuir.app.pagination.Paged;
 import by.bsuir.app.pagination.Paging;
 import by.bsuir.app.service.AbstractService;
-import by.bsuir.app.service.BiochemicalBloodTestService;
-import by.bsuir.app.util.indicator.BiochemicalBloodIndicatorHandler;
+import by.bsuir.app.service.metriconeTestService;
+import by.bsuir.app.util.indicator.metriconeIndicatorHandler;
 import by.bsuir.app.util.indicator.GeneralBloodIndicatorHandler;
 import by.bsuir.app.util.indicator.IndicatorHandler;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +24,13 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class BiochemicalBloodTestServiceImpl extends AbstractService<BiochemicalBloodTest>
-        implements BiochemicalBloodTestService {
+public class metriconeTestServiceImpl extends AbstractService<metriconeTest>
+        implements metriconeTestService {
 
     private final UserDao userDao;
-    private final BiochemicalBloodTestDao bloodTestDao;
+    private final metriconeTestDao bloodTestDao;
 
-    public BiochemicalBloodTestServiceImpl(UserDao userDao, BiochemicalBloodTestDao bloodTestDao) {
+    public metriconeTestServiceImpl(UserDao userDao, metriconeTestDao bloodTestDao) {
         super(bloodTestDao);
         this.userDao = userDao;
         this.bloodTestDao = bloodTestDao;
@@ -38,8 +38,8 @@ public class BiochemicalBloodTestServiceImpl extends AbstractService<Biochemical
 
     @Override
     @Transactional
-    public BiochemicalBloodTest save(BiochemicalBloodTestDto testDto) throws ServiceException {
-        BiochemicalBloodTest test = new BiochemicalBloodTest();
+    public metriconeTest save(metriconeTestDto testDto) throws ServiceException {
+        metriconeTest test = new metriconeTest();
         try {
             Optional<User> userOptional = userDao.findByUsername(testDto.getUsername());
             if (userOptional.isPresent()) {
@@ -59,9 +59,9 @@ public class BiochemicalBloodTestServiceImpl extends AbstractService<Biochemical
 
     @Override
     @Transactional
-    public Paged<BiochemicalBloodTest> getPage(int pageNumber, int size, String username, String lang) {
-        Page<BiochemicalBloodTest> postPage = bloodTestDao.findAllByUsername(pageNumber - 1, size, username);
-        IndicatorHandler<BiochemicalBloodTest> ih = new BiochemicalBloodIndicatorHandler(lang);
+    public Paged<metriconeTest> getPage(int pageNumber, int size, String username, String lang) {
+        Page<metriconeTest> postPage = bloodTestDao.findAllByUsername(pageNumber - 1, size, username);
+        IndicatorHandler<metriconeTest> ih = new metriconeIndicatorHandler(lang);
         ih.processIndicators(postPage.getObject());
         return new Paged<>(postPage, Paging.of(bloodTestDao.findAllCountByUsername(username), pageNumber, size));
     }
@@ -70,11 +70,11 @@ public class BiochemicalBloodTestServiceImpl extends AbstractService<Biochemical
     @Transactional
     public boolean addRecommendation(Long userId, Long bloodTestId, String recommendation) {
         try {
-            Optional<BiochemicalBloodTest> bloodTestOptional = bloodTestDao.findById(bloodTestId);
+            Optional<metriconeTest> bloodTestOptional = bloodTestDao.findById(bloodTestId);
             Optional<User> userOptional = userDao.findById(userId);
 
             if (bloodTestOptional.isPresent()) {
-                BiochemicalBloodTest test = bloodTestOptional.get();
+                metriconeTest test = bloodTestOptional.get();
                 test.setResult(recommendation);
                 userOptional.ifPresent(test::setUser);
                 bloodTestDao.update(test);

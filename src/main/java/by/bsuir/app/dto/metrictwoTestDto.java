@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.*;
 
 @Data
-public class GeneralBloodTestDto {
+public class metrictwoTestDto {
 
     private final static String MIN = "1";
     private final static String MAX = "20000.0";

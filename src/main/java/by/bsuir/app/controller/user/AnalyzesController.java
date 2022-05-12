@@ -1,13 +1,13 @@
 package by.bsuir.app.controller.user;
 
-import by.bsuir.app.dto.BiochemicalBloodTestDto;
-import by.bsuir.app.dto.GeneralBloodTestDto;
-import by.bsuir.app.entity.BiochemicalBloodTest;
-import by.bsuir.app.entity.GeneralBloodTest;
+import by.bsuir.app.dto.metriconeTestDto;
+import by.bsuir.app.dto.metrictwoTestDto;
+import by.bsuir.app.entity.metriconeTest;
+import by.bsuir.app.entity.metrictwoTest;
 import by.bsuir.app.exception.ServiceException;
 import by.bsuir.app.pagination.Paged;
-import by.bsuir.app.service.BiochemicalBloodTestService;
-import by.bsuir.app.service.GeneralBloodTestService;
+import by.bsuir.app.service.metriconeTestService;
+import by.bsuir.app.service.metrictwoTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,28 +24,28 @@ import java.util.List;
 @RequestMapping("/user/analyzes")
 public class AnalyzesController {
 
-    private final BiochemicalBloodTestService biochemicalBloodTestService;
-    private final GeneralBloodTestService generalBloodTestService;
+    private final metriconeTestService metriconeTestService;
+    private final metrictwoTestService generalBloodTestService;
 
-    public AnalyzesController(BiochemicalBloodTestService biochemicalBloodTestService,
-                              GeneralBloodTestService generalBloodTestService) {
-        this.biochemicalBloodTestService = biochemicalBloodTestService;
+    public AnalyzesController(metriconeTestService metriconeTestService,
+                              metrictwoTestService generalBloodTestService) {
+        this.metriconeTestService = metriconeTestService;
         this.generalBloodTestService = generalBloodTestService;
     }
 
     @GetMapping("")
     private String showAnalyzesPage(Principal user, Model model) {
         model.addAttribute("username", user.getName());
-        model.addAttribute("bio_blood", new BiochemicalBloodTestDto());
-        model.addAttribute("general_blood", new GeneralBloodTestDto());
+        model.addAttribute("bio_blood", new metriconeTestDto());
+        model.addAttribute("general_blood", new metrictwoTestDto());
         return "user/analyzes";
     }
 
     @ResponseBody
-    @PostMapping("/add/bioBlood/{username}")
-    public ResponseEntity<BiochemicalBloodTest> addBioBloodTest(@RequestBody @Valid BiochemicalBloodTestDto dto) {
+    @PostMapping("/add/metricone/{username}")
+    public ResponseEntity<metriconeTest> addmetriconeTest(@RequestBody @Valid metriconeTestDto dto) {
         try {
-            return new ResponseEntity<>(biochemicalBloodTestService.save(dto), HttpStatus.CREATED);
+            return new ResponseEntity<>(metriconeTestService.save(dto), HttpStatus.CREATED);
         } catch (ServiceException e) {
             log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,18 +53,18 @@ public class AnalyzesController {
     }
 
     @ResponseBody
-    @GetMapping("/bioBlood/{username}")
-    public Paged<BiochemicalBloodTest> findAllBiochemicalBloodWithPagination(
+    @GetMapping("/metricone/{username}")
+    public Paged<metriconeTest> findAllmetriconeWithPagination(
             @PathVariable String username, @CookieValue(value = "lang", defaultValue = "ru") String lang,
             @RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
             @RequestParam(value = "size", required = false, defaultValue = "1") int size
     ) {
-        return biochemicalBloodTestService.getPage(pageNumber, size, username, lang);
+        return metriconeTestService.getPage(pageNumber, size, username, lang);
     }
 
     @ResponseBody
     @PostMapping("/add/generalBlood/{username}")
-    public ResponseEntity<GeneralBloodTest> addGeneralBloodTest(@RequestBody @Valid GeneralBloodTestDto dto) {
+    public ResponseEntity<metrictwoTest> addGeneralBloodTest(@RequestBody @Valid metrictwoTestDto dto) {
         try {
             return new ResponseEntity<>(generalBloodTestService.save(dto), HttpStatus.CREATED);
         } catch (ServiceException e) {
@@ -75,7 +75,7 @@ public class AnalyzesController {
 
     @ResponseBody
     @GetMapping("/generalBlood/{username}")
-    public Paged<GeneralBloodTest> findAllGeneralBloodWithPagination(
+    public Paged<metrictwoTest> findAllGeneralBloodWithPagination(
             @PathVariable String username, @CookieValue(value = "lang", defaultValue = "ru") String lang,
             @RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
             @RequestParam(value = "size", required = false, defaultValue = "1") int size) {

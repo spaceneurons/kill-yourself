@@ -1,12 +1,12 @@
 package by.bsuir.app.util.indicator;
 
 import by.bsuir.app.entity.Analyzes;
-import by.bsuir.app.entity.GeneralBloodTest;
+import by.bsuir.app.entity.metrictwoTest;
 import by.bsuir.app.entity.enums.State;
 
 import java.util.List;
 
-public class GeneralBloodIndicatorHandler implements IndicatorHandler<GeneralBloodTest> {
+public class metrictwoIndicatorHandler implements IndicatorHandler<metrictwoTest> {
 
     private final static double ERYTHROCYTES_MIN = 1;
     private final static double ERYTHROCYTES_MAX = 100000;
@@ -21,15 +21,15 @@ public class GeneralBloodIndicatorHandler implements IndicatorHandler<GeneralBlo
 
     private final String lang;
 
-    public GeneralBloodIndicatorHandler(String lang) {
+    public metrictwoIndicatorHandler(String lang) {
         this.lang = lang;
     }
 
     @Override
-    public List<GeneralBloodTest> processIndicators(List<? extends Analyzes> analyzes) {
-        List<GeneralBloodTest> tests = (List<GeneralBloodTest>) analyzes;
+    public List<metrictwoTest> processIndicators(List<? extends Analyzes> analyzes) {
+        List<metrictwoTest> tests = (List<metrictwoTest>) analyzes;
 
-        for (GeneralBloodTest test : tests) {
+        for (metrictwoTest test : tests) {
             test.setErythrocytesState(langResolver(getErythrocytesState(test.getErythrocytes())));
             test.setLeukocytesState(langResolver(getLeukocytesState(test.getErythrocytes())));
             test.setHemoglobinState(langResolver(getHemoglobinState(test.getHemoglobinValue())));

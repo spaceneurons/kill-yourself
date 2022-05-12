@@ -1,8 +1,8 @@
 package by.bsuir.app.dao.impl;
 
 import by.bsuir.app.dao.AbstractDao;
-import by.bsuir.app.dao.BiochemicalBloodTestDao;
-import by.bsuir.app.entity.BiochemicalBloodTest;
+import by.bsuir.app.dao.metriconeTestDao;
+import by.bsuir.app.entity.metriconeTest;
 import by.bsuir.app.pagination.Page;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -11,18 +11,18 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 @Repository
-public class BiochemicalBloodTestImpl extends AbstractDao<BiochemicalBloodTest> implements BiochemicalBloodTestDao {
+public class metriconeTestImpl extends AbstractDao<metriconeTest> implements metriconeTestDao {
 
-    private final static String HQL_FIND_ALL = "select b FROM BiochemicalBloodTest b where b.user.username = :username";
+    private final static String HQL_FIND_ALL = "select b FROM metriconeTest b where b.user.username = :username";
 
-    public BiochemicalBloodTestImpl(SessionFactory sessionFactory) {
-        super(sessionFactory, BiochemicalBloodTest.class);
+    public metriconeTestImpl(SessionFactory sessionFactory) {
+        super(sessionFactory, metriconeTest.class);
     }
 
     @Override
-    public Page<BiochemicalBloodTest> findAllByUsername(int pageNumber, int size, String username) {
-        List<BiochemicalBloodTest> tests = getCurrentSession()
-                .createQuery(HQL_FIND_ALL, BiochemicalBloodTest.class)
+    public Page<metriconeTest> findAllByUsername(int pageNumber, int size, String username) {
+        List<metriconeTest> tests = getCurrentSession()
+                .createQuery(HQL_FIND_ALL, metriconeTest.class)
                 .setParameter("username", username)
                 .setFirstResult(pageNumber*size)
                 .setMaxResults(size)
@@ -39,7 +39,7 @@ public class BiochemicalBloodTestImpl extends AbstractDao<BiochemicalBloodTest> 
     @Override
     public int findAllCountByUsername(String username) {
         return getCurrentSession()
-                .createQuery(HQL_FIND_ALL, BiochemicalBloodTest.class)
+                .createQuery(HQL_FIND_ALL, metriconeTest.class)
                 .setParameter("username", username)
                 .getResultList()
                 .size();

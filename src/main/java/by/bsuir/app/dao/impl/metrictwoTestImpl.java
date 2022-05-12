@@ -1,8 +1,8 @@
 package by.bsuir.app.dao.impl;
 
 import by.bsuir.app.dao.AbstractDao;
-import by.bsuir.app.dao.GeneralBloodTestDao;
-import by.bsuir.app.entity.GeneralBloodTest;
+import by.bsuir.app.dao.metrictwoTestDao;
+import by.bsuir.app.entity.metrictwoTest;
 import by.bsuir.app.pagination.Page;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -11,17 +11,17 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 @Repository
-public class GeneralBloodTestImpl extends AbstractDao<GeneralBloodTest> implements GeneralBloodTestDao {
+public class metrictwoTestImpl extends AbstractDao<metrictwoTest> implements metrictwoTestDao {
 
-    private final static String HQL_FIND_ALL = "select g FROM GeneralBloodTest g where g.user.username = :username";
-    public GeneralBloodTestImpl(SessionFactory sessionFactory) {
-        super(sessionFactory, GeneralBloodTest.class);
+    private final static String HQL_FIND_ALL = "select g FROM metrictwoTest g where g.user.username = :username";
+    public metrictwoTestImpl(SessionFactory sessionFactory) {
+        super(sessionFactory, metrictwoTest.class);
     }
 
     @Override
-    public Page<GeneralBloodTest> findAllByUsername(int pageNumber, int size, String username) {
-        List<GeneralBloodTest> tests = getCurrentSession()
-                .createQuery(HQL_FIND_ALL, GeneralBloodTest.class)
+    public Page<metrictwoTest> findAllByUsername(int pageNumber, int size, String username) {
+        List<metrictwoTest> tests = getCurrentSession()
+                .createQuery(HQL_FIND_ALL, metrictwoTest.class)
                 .setParameter("username", username)
                 .setFirstResult(pageNumber*size)
                 .setMaxResults(size)
@@ -38,7 +38,7 @@ public class GeneralBloodTestImpl extends AbstractDao<GeneralBloodTest> implemen
     @Override
     public int findAllCountByUsername(String username) {
         return getCurrentSession()
-                .createQuery(HQL_FIND_ALL, GeneralBloodTest.class)
+                .createQuery(HQL_FIND_ALL, metrictwoTest.class)
                 .setParameter("username", username)
                 .getResultList()
                 .size();

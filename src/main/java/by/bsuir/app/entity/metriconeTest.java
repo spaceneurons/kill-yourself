@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"user"}, callSuper = true)
 @Entity
-public class BiochemicalBloodTest extends Analyzes<BiochemicalBloodTest> {
+public class metriconeTest extends Analyzes<metriconeTest> {
 
     private static final long serialVersionUID = 1L;
 

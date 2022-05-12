@@ -1,0 +1,105 @@
+:root {
+    --color_dark: #333333;
+    --color_light: #F8FAFB;
+    --color_blue: #e87070;
+}
+
+.color-blue {
+    color: var(--color_blue);
+}
+
+body {
+    background-color: var(--color_light);
+}
+
+.navbar-brand, .nav-link {
+    color: white;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-left: 150px;
+    width: fit-content;
+    justify-content: space-between;
+}
+.navbar-brand-name {
+    padding-left: 10px;
+}
+.navbar-brand:hover {
+    color: white;
+}
+.nav-link:hover {
+    color: white;
+    text-decoration: solid;
+}
+
+.navbar-icon {
+    width: 36px;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+header {
+    background-color: var(--color_blue);
+}
+
+footer {
+    color: #caced1 !important;
+    background-color: var(--color_dark);
+    position: absolute;
+    width: 100%;
+    margin-top: 50px;
+    /*bottom: 0; !* Might overkill*!*/
+}
+
+.btn-itd {
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    transition: all 0.2s ease;
+    border: 2px solid #c0d0e5;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+button {
+    padding: 0;
+    border: none;
+    height: auto;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    /* отображаем курсор в виде руки при наведении; некоторые
+    считают, что необходимо оставлять стрелочный вид для кнопок */
+    cursor: pointer;
+}
+
+.btn-login {
+    background-color: var(--color_blue);
+}
+
+.btn-itd:hover {
+    color: white;
+    border: 2px solid  #9EB0C3;
+    opacity: 0.7;
+    filter: brightness(150%);
+}
+
+footer .row{
+    --bs-gutter-x: 0;
+}
+
+/*@media screen and (max-width: 1000px) {*/
+/*    .navbar-collapse {*/
+/*        justify-content: flex-start;*/
+/*    }*/
+/*}*/
+
+.custom_text {
+    line-height: 23px;
+}

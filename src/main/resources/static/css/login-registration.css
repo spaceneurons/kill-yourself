@@ -1,0 +1,127 @@
+/* poppins-300italic - latin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 300;
+    src: local(''),
+    url('../fonts/poppins-v19-latin-300italic.woff2') format('woff2');
+}
+/* poppins-regular - latin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url('../fonts/poppins-v19-latin-regular.woff2') format('woff2');
+}
+/* poppins-500 - latin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''),
+    url('../fonts/poppins-v19-latin-500.woff2') format('woff2');
+}
+/* poppins-500italic - latin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 500;
+    src: local(''),
+    url('../fonts/poppins-v19-latin-500italic.woff2') format('woff2');
+}
+
+body {
+    font-family: Poppins, fantasy;
+}
+
+.container-wrapper {
+
+}
+
+::selection {
+    background: #ff80bf;
+
+}
+
+.container {
+
+
+}
+
+.container form .title {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+
+}
+
+.container form .title:before {
+    content: '';
+    position: absolute;
+}
+
+.container form .input-box {
+
+    position: relative;
+}
+
+.container form .input-box input {
+    width: 100%;
+    height: 100%;
+
+}
+
+.container form .underline::before {
+    content: '';
+    position: absolute;
+
+}
+
+.container form .underline::after {
+    content: '';
+    position: absolute;
+
+}
+
+.container form .input-box input:focus ~ .underline::after,
+.container form .input-box input:valid ~ .underline::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.container form .button {
+    margin: 20px 0 20px 0;
+}
+.button input[type="submit"]:disabled {
+    background-color: black;
+}
+
+.container .input-box input[type="submit"] {
+    font-size: 17px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.container .input-box input[type="submit"]:hover {
+    letter-spacing: 1px;
+
+}
+
+.container .option {
+    font-size: 14px;
+    text-align: center;
+}
+
+.label {
+    margin-top: 10px;
+}
+
+#captchaError {
+    display: block;
+    width: 100%;
+    font-size: .8em;
+    text-align: center;
+}

@@ -1,17 +1,19 @@
-## Tools
+## *Online training*
 
-- Spring boot (backend)
-- React (frontend)
-- Mysql
+---
+### *Description*
 
-## How to launch
+***
 
-- (afterwards)
+### *Database schema*
 
-## TO DO
+---
 
-- change class names (with my last name)
-- make any design
-- remove old code
-- push code to github
-- 
+### *Development log*
+
+---
+    Developed abstract dao, connection pool, services, login/main pages and etc...
+    before...
+
+    21/02/2022 - i18n implementation
+    22/02/2022 - Replaced c3p0 on HikariCP

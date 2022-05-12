@@ -1,0 +1,34 @@
+/*.custom_row {*/
+/*    margin: 0 -50px;*/
+/*}*/
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+    cursor: pointer;
+}
+
+.vertical-menu a.active {
+    background-color: var(--color_blue); /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+#general_blood, #bio_blood, .state_value {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.active_page {
+    background-color: var(--color_blue);
+    color: black;
+}

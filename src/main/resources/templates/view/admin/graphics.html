@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--        <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: head"/>
+    <link th:href="@{/static/css/home.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/graphics.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div th:replace="/common/fragments-page :: header"/>
+<div class="main head-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-sm-12">
+                <div align="center">
+                    <input id="history_title" type="hidden" th:value="#{graphics.title.history}">
+                    <input id="history_axis_x" type="hidden" th:value="#{graphics.title.history.axis.x}">
+                    <input id="history_axis_y" type="hidden" th:value="#{graphics.title.history.axis.y}">
+                    <input id="history_data" type="hidden" th:value="#{graphics.title.history.data}">
+                </div>
+                <figure class="highcharts-figure">
+                    <div id="container-bar"></div>
+                </figure>
+<!--                <div align="center">-->
+<!--                    <h2 th:text="#{graphics.title.history}"></h2>-->
+<!--                    <input class="axis_x" type="hidden" th:text="#{graphics.title.history.axis.x}">-->
+<!--                    <input class="axis_y" type="hidden" th:text="#{graphics.title.history.axis.y}">-->
+<!--                </div>-->
+<!--                <figure class="highcharts-figure">-->
+<!--                    <div id="container-barr"></div>-->
+<!--                </figure>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/common/fragments-page :: footer"/>
+
+<script th:src="@{/static/js/graphics.js}"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+</body>
+</html>

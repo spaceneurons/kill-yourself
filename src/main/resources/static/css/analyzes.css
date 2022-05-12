@@ -1,0 +1,37 @@
+.analise_card {
+    font-size: 20px;
+    border-radius: 20px;
+}
+.analise_card {
+    background-color: var(--color_grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    min-height: 150px;
+}
+
+.analise_card:hover {
+    cursor: pointer;
+    transform: scale(.95);
+    transition: 1s;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.main .container .image {
+    width: 192px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.button_container_reset {
+    text-align: right;
+}
+
+.btn_img{
+    width: 16px;
+}
+
+.row_element {
+    padding-top: 40px;
+}

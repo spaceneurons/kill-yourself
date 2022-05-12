@@ -1,0 +1,18 @@
+.text_error_underline {
+    display: none;
+    font-family: "Times New Roman";
+    font-size: 18px;
+    color: red;
+}
+
+.success, .fail {
+    display: none;
+}
+
+.disable {
+    display: none;
+}
+
+.red {
+    color: red;
+}

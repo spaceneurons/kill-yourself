@@ -1,0 +1,16 @@
+.head-block {
+    background-color: var(--color_grey);
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.head-block .element {
+    margin-top: 15px;
+}
+
+.head-block .center {
+    width: 50vh;
+}

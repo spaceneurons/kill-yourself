@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--    <th:block th:include="/common/fragments-util :: doctype-html-head-tags-begin"/>-->
+    <th:block th:include="/common/fragments-util :: head"/>
+    <th:block th:include="/common/fragments-util :: jQuery-lib"/>
+    <th:block th:include="/common/fragments-util :: datatables-css"/>
+    <link th:href="@{/static/css/home.css}" rel="stylesheet"/>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div th:replace="/common/fragments-page :: header"/>
+<div class="main head-block">
+    <div class="container">
+        <div class="row">
+            <table id="table_with_users" class="table table-striped">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th class="text-center" scope="col" th:text="#{login.username}">First</th>
+                    <th class="text-center" scope="col" th:text="#{profile.fullName}">First</th>
+                    <th class="text-center" scope="col" th:text="#{profile.gender}">First</th>
+                    <th class="text-center" scope="col" th:text="#{profile.role}">First</th>
+<!--                    <th class="text-center" scope="col" th:text="#{management.status.block}">First</th>-->
+                    <th class="text-center" scope="col" th:text="#{management.action}">First</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="user: ${users}">
+                    <tr>
+                        <td th:text="${userStat.index + 1}">index</td>
+                        <td class="text-center" th:text="${user.username}"></td>
+                        <td class="text-center">
+                            <span th:text="${user.card?.surname}"/>
+                            <span th:text="${user.card?.name}"/>
+                            <span th:text="${user.card?.thirdName}"/>
+                        </td>
+                        <td class="text-center">
+                            <th:block th:if="${user.card?.gender}" th:switch="${user.card?.gender.toString()}">
+                                <span th:case="'MALE'" th:text="#{profile.gender.male}"></span>
+                                <span th:case="'FEMALE'" th:text="#{profile.gender.female}"></span>
+                            </th:block>
+                        </td>
+                        <td class="text-center" th:switch="${user.roles[0].toString()}">
+                            <span th:case="'ADMIN'" th:text="#{profile.role.admin}"></span>
+                            <span th:case="'USER'" th:text="#{profile.role.user}"></span>
+                            <span th:case="'DOCTOR'" th:text="#{profile.role.doctor}"></span>
+                        </td>
+<!--                        <td class="text-center" th:switch="${user.roles[0].toString()}">-->
+<!--                            <th:block th:unless="${user.isBlocked}"><img class="w-24"-->
+<!--                                                                         th:src="@{/static/images/active.png}">-->
+<!--                            </th:block>-->
+<!--                            <th:block th:if="${user.isBlocked}"><img class="w-24"-->
+<!--                                                                     th:src="@{/static/images/disabled.png}"></th:block>-->
+<!--                        </td>-->
+                        <td class="text-center flex-fill flex-row block_actions">
+<!--                            th:action="@{/admin/management/blocking/{username}(username=${user.username})}" method="post"-->
+                            <form class="blocking_button">
+                                <input type="hidden" th:value="*{user.username}">
+                                <button>
+                                    <th:block th:if="${user.isBlocked}"><img class="w-24 me-3" th:src="@{/static/images/active.png}"></th:block>
+                                    <th:block th:unless="${user.isBlocked}"><img class="w-24 me-3" th:src="@{/static/images/disabled.png}"></th:block>
+                                </button>
+                            </form>
+                            <form th:action="@{/user/personal/edit/{username}(username=${user.username})}">
+                                <button><img class="w-24 me-3" th:src="@{/static/images/edit.png}"></button>
+                            </form>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="/common/fragments-page :: footer"/>
+<th:block th:include="/common/fragments-util :: bs-link-js"/>
+<th:block th:include="/common/fragments-util :: datatables-js"/>
+<script th:src="@{/static/js/user-managment.js}"></script>
+</body>
+</html>

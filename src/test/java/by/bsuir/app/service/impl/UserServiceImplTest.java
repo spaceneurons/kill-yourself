@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
 @SpringBootTest
 class UserServiceImplTest {
     @Autowired
-    private OfferedAnswerService offeredAnswerService;
+    private ServiceException offeredAnswerService;
     @Autowired
     private assessmentServiceImp assessmentServiceImp;
     @Autowired
